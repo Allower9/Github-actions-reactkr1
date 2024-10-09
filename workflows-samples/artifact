@@ -1,0 +1,17 @@
+name: Build
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get code
+        uses: actions/checkout
+    - name: Instal deps
+        run: npm ci
+    - name: Build project
+        run: npm run build
+    - name: Uploud Artifact
+        uses: actions/uploud-artifact@v3
+          wich:    
+            path: build
+            name: build-files
